@@ -1,0 +1,25 @@
+version: '3'
+services:
+  database:
+    image: "postgres" # use latest official postgres version
+    env_file:
+      - database.env # configure postgres
+    volumes:
+      - ./sqlfile.sql:/docker-entrypoint-initdb.d/init.sql # persist data even if container shuts down
+    ports:
+      - "5432:5432"
+  app:
+    build: .
+    depends_on:
+      - database
+    environment:
+      DATABASE_URL: postgres://user:pass@postgres:5432/db
+      NODE_ENV: development
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    command: node index.js
+    volumes:
+      - ./api:/usr/app/
+volumes:
+  database-data: # named volumes can be managed easier using docker-compose
