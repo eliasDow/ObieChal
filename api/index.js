@@ -20,21 +20,21 @@ const pool = new Pool({
 
 // Dump all data basically
 app.get('/carriers/', async (req, res) =>{
-    let test = await pool.query("select name, superset, state from carrier");
+    let test = await pool.query("select name, superset, state, type from carrier");
     res.send(test.rows);
 })
 
 // Get all carriers by insurance type (auto, flood, etc)
 app.get('/carriers/insurance-type/:type', async (req, res) =>{
     const insuranceType = req.params.type;
-    let test = await pool.query("select name, superset, state from carrier where upper(type)=upper($1)", [insuranceType]);
+    let test = await pool.query("select name, superset, state, type from carrier where upper(type)=upper($1)", [insuranceType]);
     res.send(test.rows);
 })
 
 // Get all carriers by state abbreveation (IL, FL, etc)
 app.get('/carriers/state/:state', async (req, res) =>{
     const state = req.params.state;
-    let test = await pool.query("select name, superset, state from carrier where and upper(state)=upper($1)", [state]);
+    let test = await pool.query("select name, superset, state, type from carrier where and upper(state)=upper($1)", [state]);
     res.send(test.rows);
 })
 
@@ -42,7 +42,7 @@ app.get('/carriers/state/:state', async (req, res) =>{
 app.get('/carriers/insurance-type/:type/state/:state', async (req, res) =>{
     const insuranceType = req.params.type;
     const state = req.params.state;
-    let test = await pool.query("select name, superset, state from carrier where upper(type)=upper($1) and upper(state)=upper($2)", [insuranceType, state]);
+    let test = await pool.query("select name, superset, state, type from carrier where upper(type)=upper($1) and upper(state)=upper($2)", [insuranceType, state]);
     res.send(test.rows);
 })
 

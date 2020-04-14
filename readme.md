@@ -9,12 +9,17 @@ That's it.
 
 ## Endpoints
 `GET http://localhost:3000/carriers/`
+Returns all carriers
 
 `GET http://localhost:3000/carriers/insurance-type/{insuranceType}`
+Returns all carriers for a given insurance type (auto, flood, apts, fire, sfr, FourPlus)
 
 `GET http://localhost:3000/carriers/state/{state}`
+Returns all carriers for a given state abbreviation
+
 
 `GET http://localhost:3000/carriers/insurance-type/{insuranceType}/state/{state}`
+Returns all carriers for a given insurance type and given state
 
 
 
