@@ -21,6 +21,6 @@ services:
     command: node index.js
     volumes:
       - ./api:/usr/app/
-      - /app/node_modules
+      - /usr/app/node_modules
 volumes:
   database-data: # named volumes can be managed easier using docker-compose

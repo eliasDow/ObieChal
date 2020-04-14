@@ -8,13 +8,13 @@
 That's it.
 
 ## Endpoints
-`http://localhost:3000/carriers/`
+`GET http://localhost:3000/carriers/`
 
-`http://localhost:3000/carriers/insurance-type/{insuranceType}`
+`GET http://localhost:3000/carriers/insurance-type/{insuranceType}`
 
-`http://localhost:3000/carriers/state/{state}`
+`GET http://localhost:3000/carriers/state/{state}`
 
-`http://localhost:3000/carriers/insurance-type/{insuranceType}/state/{state}`
+`GET http://localhost:3000/carriers/insurance-type/{insuranceType}/state/{state}`
 
 
 
