@@ -38,7 +38,7 @@ for index, row in df.iterrows():
     # print(row['Carrier'], row['IL'], row['IN'], row['MI'])
     insert(row, 'FL', 'PL')
 
-df = pandas.read_excel('test.xls', sheet_name='pl-flood', dtype=str)
+df = pandas.read_excel('carriers.xls', sheet_name='pl-flood', dtype=str)
 df = df.fillna('')    
 
 for index, row in df.iterrows():
@@ -46,7 +46,7 @@ for index, row in df.iterrows():
     for state in ['IL', 'IN', 'MI', 'FL']:
         insert(row, state, 'PL')
 
-df = pandas.read_excel('test.xls', sheet_name='cl-flood', dtype=str)
+df = pandas.read_excel('carriers.xls', sheet_name='cl-flood', dtype=str)
 df = df.fillna('')    
 
 for index, row in df.iterrows():
@@ -54,7 +54,7 @@ for index, row in df.iterrows():
     for state in ['IL', 'IN', 'MI', 'FL']:
         insert(row, state, 'CL', True)
 
-df = pandas.read_excel('test.xls', sheet_name='PL - Other States', dtype=str)
+df = pandas.read_excel('carriers.xls', sheet_name='PL - Other States', dtype=str)
 df = df.fillna('')   
 for index, row in df.iterrows():
     # print(row['Carrier'], row['IL'], row['IN'], row['MI'])
@@ -62,7 +62,7 @@ for index, row in df.iterrows():
         # print(state)
         insert(row, state, 'PL')
 
-df = pandas.read_excel('test.xls', sheet_name='CL STATES APTS', dtype=str)
+df = pandas.read_excel('carriers.xls', sheet_name='CL STATES APTS', dtype=str)
 df = df.fillna('')   
 for index, row in df.iterrows():
     # print(row['Carrier'], row['IL'], row['IN'], row['MI'])
@@ -71,7 +71,7 @@ for index, row in df.iterrows():
         insert(row, state, 'CL')
 
 # super annoying revisit
-# df = pandas.read_excel('test.xls', sheet_name='CL - ILINMIOH', dtype=str)
+# df = pandas.read_excel('carriers.xls', sheet_name='CL - ILINMIOH', dtype=str)
 # df = df.fillna('')   
 # for index, row in df.iterrows():
 #     # print(row['Carrier'], row['IL'], row['IN'], row['MI'])
@@ -80,6 +80,7 @@ for index, row in df.iterrows():
 #         insert(row, state, 'CL')
 
 def insertSfr(row, state, typeIns):
+    # change this to or
     if row[typeIns].upper() == 'yes'.upper():
         if typeIns == "SFR's (1-4 Units)":
             typeIns = "SFR"
@@ -96,7 +97,7 @@ def insertSfr(row, state, typeIns):
 
 
 for state in ['FL', 'TX', 'OK', 'TN']:
-    df = pandas.read_excel('test.xls', sheet_name='CL - '+state, dtype=str)
+    df = pandas.read_excel('carriers.xls', sheet_name='CL - '+state, dtype=str)
     df = df.fillna('')   
     for index, row in df.iterrows():
         # print(row['Carrier'], row['IL'], row['IN'], row['MI'])

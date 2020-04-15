@@ -12,14 +12,14 @@ router.get('/carriers/', async (req, res) =>{
 router.get('/carriers/insurance-type/:type', async (req, res) =>{
     const insuranceType = req.params.type;
     let result = await db.query("select name, superset, state, type from carrier where upper(type)=upper($1)", [insuranceType]);
-    res.send(result.rows);
+    res.send({carriers:result.rows});
 })
 
 // Get all carriers by state abbreveation (IL, FL, etc)
 router.get('/carriers/state/:state', async (req, res) =>{
     const state = req.params.state;
     let result = await db.query("select name, superset, state, type from carrier where and upper(state)=upper($1)", [state]);
-    res.send(result.rows);
+    res.send({carriers:result.rows});
 })
 
 // Gett all carriers by type and state
@@ -29,6 +29,11 @@ router.get('/carriers/insurance-type/:type/state/:state', async (req, res) =>{
     //here we could create a carrier service to make a call like: carrier.get(type, state)
     //this would be useful in future if more business logic is added
     let result = await db.query("select name, superset, state, type from carrier where upper(type)=upper($1) and upper(state)=upper($2)", [insuranceType, state]);
-    res.send(result.rows);
+    res.send({carriers:result.rows});
+    
+    // example use of this response
+    // for(let row of result.rows) {
+    //     console.log(row.name);
+    // }
 })
 module.exports = router
